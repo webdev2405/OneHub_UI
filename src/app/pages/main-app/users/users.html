@@ -1,0 +1,123 @@
+<div [class]="isCard() ? '' : 'mx-4 my-1 border-0'">
+    @if(!isCard()){
+    <app-content-header [title]="title" [subRoute]="title"></app-content-header>
+    }
+
+    <div class="d-flex align-items-center justify-content-between w-100">
+
+        <!-- LEFT SIDE -->
+        <div class="d-flex align-items-center">
+            <select class="form-select" id="title" required name="organizationType" (change)="onClientTypeChange($event)" style="width: 220px">
+                <option selected disabled value="NA">Choose Client Type</option>
+                <option value="NA">All</option>
+                <option value="01">Hospital</option>
+                <option value="02">School</option>
+                <option value="03">Housing Society</option>
+            </select>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="d-flex align-items-center">
+            <input type="text" placeholder="Type to filter record..."
+                class="form-control border-white px-2 py-1" (input)="onFilterChange($event)"
+                style="width: 50%" />
+
+            <button class="p-0 border-0 ms-2" mat-icon-button (click)="exportToExcel()">
+                <i class="bi bi-file-earmark-excel-fill text-success fs-2"></i>
+            </button>
+
+            <button class="ms-2" mat-raised-button color="accent" (click)="addUser()">
+                <mat-icon fontIcon="add"></mat-icon>
+                ADD USER
+            </button>
+        </div>
+
+    </div>
+
+    <div class="col-md-12 mb-3 mt-1">
+        <ngx-datatable #table class="material rounded" [rows]="users()" [columnMode]="columnMode.force"
+            [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [loadingIndicator]="loadingIndicator()"
+            [offset]="0" [limit]="isCard() ? 4 : 10" [scrollbarH]="true" (page)="onPageChange($event)"
+            (sort)="onSortChange($event)">
+            <ngx-datatable-column prop="orgCode" [sortable]="true">
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                    <span class="text-white fw-medium tableHeader">ORG CODE</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="orgName" [sortable]="true">
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                    <span class="text-white fw-medium tableHeader">ORG NAME</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="orgEmailId" [sortable]="true">
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                    <span class="text-white fw-medium tableHeader">EMAIL</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="orgContactNo" [sortable]="true">
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                    <span class="text-white fw-medium tableHeader">PHONE</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="status" [sortable]="true">
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                    <span class="text-white fw-medium tableHeader">USER STATUS</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [frozenRight]="true">
+                <ng-template ngx-datatable-header-template>
+                    <span class="tableHeader">ACTION</span>
+                </ng-template>
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <button class="btn btn-sm mx-1" (click)="openUserFormModal(userFormTemplate, row)">
+                        <i class="fa fa-edit primary-color"></i>
+                    </button>
+                    <!-- <button class="btn btn-sm mx-1" (click)="deleteItem(row)">
+                        <i class="fa fa-trash error-color"></i>
+                    </button> -->
+
+                    <button class="btn btn-sm mx-1" (click)="toggleStatus(row)">
+                        <i class="fas" [class.fa-toggle-on]="row.status === 'ACTIVE'"
+                            [class.fa-toggle-off]="row.status !== 'ACTIVE'"
+                            [style.color]="row.status === 'ACTIVE' ? 'green' : 'red'" style="font-size:24px">
+                        </i>
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
+
+        </ngx-datatable>
+    </div>
+</div>
+
+<!-- User Form Modal-->
+
+<ng-template #userFormTemplate>
+    <div class="modal-header d-flex align-items-center justify-content-between">
+        <h4 class="modal-title">{{updateItem()? "Edit" :"Add"}} User</h4>
+        <button type="button" class="btn-close close" aria-label="Close" (click)="closeUserModal()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-edit-user [updateItem]="updateItem()!" (updatedData)="updateUser($event)"></app-edit-user>
+    </div>
+</ng-template>

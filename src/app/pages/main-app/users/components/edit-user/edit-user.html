@@ -1,0 +1,52 @@
+@let form = formData()!;
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row g-4 mx-4">
+        <div class="form-group col-xl-6 col-sm-6 col-12">
+            <label>ORG CODE <span class="text-danger">*</span></label>
+            <input 
+                type="text" 
+                class="form-control"
+                placeholder="Enter Dob" 
+                formControlName="orgCode" 
+            />
+        </div>
+        <div class="form-group col-xl-6 col-sm-6 col-12">
+            <label>NAME <span class="text-danger">*</span></label>
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Enter Organization Name" 
+                formControlName="orgName" 
+            />
+        </div>
+        <div class="form-group col-xl-6 col-sm-6 col-12">
+            <label>EMAIL <span class="text-danger">*</span></label>
+            <input 
+                type="email" 
+                class="form-control" 
+                placeholder="Enter Email" 
+                formControlName="orgEmailId" 
+            />
+        </div>
+
+        <div class="form-group col-xl-6 col-sm-6 col-12">
+            <label>PHONE <span class="text-danger">*</span></label>
+            <input 
+                type="tel" 
+                class="form-control"
+                placeholder="Enter Phone" 
+                formControlName="orgContactNo" 
+            />
+        </div>
+        <div class="box-footer mt-4  d-flex justify-content-center">
+            <button mat-raised-button color="primary" type="submit">
+                <mat-icon 
+                aria-hidden="false" 
+                aria-label="icon" 
+                fontIcon="upload"
+                ></mat-icon>
+                SUBMIT
+            </button>
+        </div>
+    </div>
+</form>

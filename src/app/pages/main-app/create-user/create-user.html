@@ -1,0 +1,125 @@
+<!-- Main Content Wrapper -->
+<div class="main-wrapper" id="mainWrapper">
+    <!-- Main Content -->
+    <main class="dashboard-content" id="main-content">
+        <div class="container-fluid">
+            <!-- Page Header -->
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="h3 font-bold">Add New Organization User</h1>
+                        <p class="text-muted text-sm">Register a new client in our product.</p>
+                    </div>
+                    <button class="btn btn-outline-secondary" [routerLink]="['/app/clients']">
+                        <i class="bi bi-arrow-left me-2"></i>
+                        Back to User List
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add Professor Form -->
+            <div class="dashboard-row">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h5 class="dashboard-card-title mb-0">Create Organization User</h5>
+                    </div>
+                    <div class="dashboard-card-body">
+                        <form class="needs-validation" novalidate #userForm="ngForm" (ngSubmit)="createUser(userForm)"
+                            [class.was-validated]="userForm.submitted">
+                            <!-- Personal Information Section -->
+
+                            <div class="dashboard-grid grid-cols-1 mb-4">
+                                <div>
+                                    <h6 class="text-primary fw-semibold mb-3">
+                                        <i class="bi bi-person-circle me-2"></i>Organization Information
+                                    </h6>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-grid grid-cols-12 gap-3 mb-3">
+                                <div class="col-span-2">
+                                    <label for="title" class="form-label">Organization Type <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-select" id="title" required name="organizationType"
+                                        [(ngModel)]="user.orgType">
+                                        <option selected disabled value="">Choose...</option>
+                                        <option value="01">Hospital</option>
+                                        <option value="02">School</option>
+                                        <option value="03">Housing Socity</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select a organization type.</div>
+                                </div>
+                                <div class="col-span-5">
+                                    <label for="orgName" class="form-label">Organization Name <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="orgName" required
+                                        [(ngModel)]="user.orgName" placeholder="Enter Organization Name">
+                                    <div class="invalid-feedback">Please provide a valid Organization name.</div>
+                                </div>
+                                <!-- <div class="col-span-5">
+                                    <label for="lastName" class="form-label">Last Name <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Enter Last Name" name="lastName"
+                                    required [(ngModel)]="user.lastName">
+                                    <div class="invalid-feedback">Please provide a valid last name.</div>
+                                </div> -->
+                            </div>
+
+                            <div class="dashboard-grid grid-cols-2 gap-3 mb-3">
+                                <div>
+                                    <label for="orgEmailId" class="form-label">Email Address <span
+                                            class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" placeholder="Enter Organization Email"
+                                        name="orgEmailId" required [(ngModel)]="user.orgEmailId">
+                                    <div class="invalid-feedback">Please provide a valid email address.</div>
+                                </div>
+                                <div>
+                                    <label for="orgContactNo" class="form-label">Phone Number <span
+                                            class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" placeholder="Enter Phone No"
+                                        name="orgContactNo" required [(ngModel)]="user.orgContactNo">
+                                    <div class="invalid-feedback">Please provide a valid phone number.</div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="dashboard-grid grid-cols-1 mb-4">
+                                <div>
+                                    <label for="address" class="form-label">Address</label>
+                                    <textarea class="form-control" rows="2"
+                                        placeholder="Enter full address" name="address" [(ngModel)]="user.address"></textarea>
+                                </div>
+                            </div> -->
+
+                            <!-- Form Actions -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <hr class="my-4">
+                                    <div class="d-flex gap-3">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bi bi-check-lg me-2"></i>Save Organization
+                                        </button>
+                                        <!-- <button type="button" class="btn btn-outline-secondary">
+                                            <i class="bi bi-x-lg me-2"></i>Cancel
+                                        </button> -->
+                                        <button type="reset" class="btn btn-outline-warning">
+                                            <i class="bi bi-arrow-clockwise me-2"></i>Reset Form
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            @if(user.msgStatus){
+                            <!-- <div class="text-success">{{user.msgStatus}}</div> -->
+                            <div class="alert alert-success text-center position-fixed top-50 start-50 translate-middle shadow">
+                                <strong>{{ user.msgStatus }}</strong>
+                            </div>
+
+                            }@else{
+                            <div class="text-danger">{{user.errorMessage}}</div>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

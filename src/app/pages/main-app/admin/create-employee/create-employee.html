@@ -1,0 +1,1324 @@
+<!-- Main Content Wrapper -->
+<div class="main-wrapper" id="mainWrapper">
+    <!-- Main Content -->
+    <main class="dashboard-content" id="main-content">
+        <div class="container-fluid">
+            <!-- Page Header -->
+              <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="h3 font-bold">Add Employee Details</h1>
+                        <p class="text-muted text-sm">Fill in the information below to add a new employee to the system.</p>
+                    </div>
+                    <div>
+                        <a routerLink="/admin/employee" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-2"></i>
+                            Back to Employees
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+          
+            <!-- Form Tabs -->
+            <div class="dashboard-row">
+                <div class="dashboard-grid grid-cols-1">
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-body">
+                            <!-- Tab Navigation -->
+                            <ul class="nav nav-tabs mb-4" id="studentFormTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="basic-tab" data-bs-toggle="tab"
+                                        data-bs-target="#basic" type="button" role="tab" aria-controls="basic"
+                                        aria-selected="true">
+                                        <i class="bi bi-person-circle me-2"></i>Basic
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="professional-tab" data-bs-toggle="tab"
+                                        data-bs-target="#professional" type="button" role="tab"
+                                        aria-controls="professional" aria-selected="false">
+                                        <i class="bi bi-briefcase me-2"></i> Professional
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="education-tab" data-bs-toggle="tab"
+                                        data-bs-target="#education" type="button" role="tab" aria-controls="education"
+                                        aria-selected="false">
+                                        <i class="bi bi-mortarboard me-2"></i> Education
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="family-tab" data-bs-toggle="tab"
+                                        data-bs-target="#family" type="button" role="tab" aria-controls="family"
+                                        aria-selected="false">
+                                        <i class="bi bi-people me-2"></i> Family
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="address-tab" data-bs-toggle="tab"
+                                        data-bs-target="#address" type="button" role="tab" aria-controls="address"
+                                        aria-selected="false" (click)="resetSelctBox(false)">
+                                        <i class="bi bi-geo-alt me-2"></i> Address
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="experience-tab" data-bs-toggle="tab"
+                                        data-bs-target="#experience" type="button" role="tab" aria-controls="experience"
+                                        aria-selected="false">
+                                        <i class="bi bi-clock-history me-2"></i> Experience
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="emergency-tab" data-bs-toggle="tab"
+                                        data-bs-target="#emergency" type="button" role="tab" aria-controls="emergency"
+                                        aria-selected="false" (click)="resetSelctBox(false)">
+                                        <i class="bi bi-telephone-plus me-2"></i>Emergency
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="mediclaim-tab" data-bs-toggle="tab"
+                                        data-bs-target="#mediclaim" type="button" role="tab" aria-controls="mediclaim"
+                                        aria-selected="false">
+                                        <i class="bi bi-shield-check me-2"></i> Mediclaim
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <!-- Tab Content -->
+                            <div class="tab-content" id="studentFormTabContent">
+                                <!-- Basic Information Tab -->
+                                <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+                                    <form class="needs-validation" novalidate #empForm="ngForm" (ngSubmit)="addEmployee(empForm)"
+                                        [class.was-validated]="empForm.submitted">
+                                        <div class="row gx-4 gy-3 border rounded p-3 mb-4">
+                                
+                                            <!-- First Name -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">
+                                                        First Name <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="text" class="form-control" name="firstName" [(ngModel)]="employee.firstName"
+                                                        required />
+                                                    <div class="invalid-feedback">
+                                                        Please enter a first name.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Last Name -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">
+                                                        Last Name <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="text" class="form-control" name="lastName" [(ngModel)]="employee.lastName" required />
+                                                    <div class="invalid-feedback">
+                                                        Please enter a last name.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Email -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">
+                                                        Email Address <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="email" class="form-control" name="email" [(ngModel)]="employee.email" required />
+                                                    <div class="invalid-feedback">
+                                                        Please enter a valid email address.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Phone -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Mobile No</label>
+                                                    <input type="number" class="form-control" name="phone" [(ngModel)]="employee.phone" required />
+                                                    <div class="invalid-feedback">
+                                                        Please enter a valid mobile number.</div>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Date of Birth -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">
+                                                        Date of Birth <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="employee.dateOfBirth"
+                                                        required />
+                                                    <div class="invalid-feedback">
+                                                        Please enter a date of birth.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Gender -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">
+                                                        Gender <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select class="form-select" name="gender" [(ngModel)]="employee.gender" required>
+                                                        <option value="" disabled>Select Gender</option>
+                                                        <option value="M">Male</option>
+                                                        <option value="F">Female</option>
+                                                        <option value="O">Other</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a gender.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Blood Group -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">
+                                                        Blood Group <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select class="form-select" name="bloodGroup" [(ngModel)]="employee.bloodGroup" required>
+                                                        <option value="" disabled>Select Blood Group</option>
+                                                        <option *ngFor="let bg of bloodGroups" [value]="bg">
+                                                            {{ bg }}
+                                                        </option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a blood group.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Marital Status -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">
+                                                        Marital Status <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select class="form-select" name="maritalStatus" [(ngModel)]="employee.maritalStatus" required>
+                                                        <option value="" disabled>Select Marital Status</option>
+                                                        <option *ngFor="let ms of maritalStatuses" [value]="ms">
+                                                            {{ ms }}
+                                                        </option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a marital status.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- PAN -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">
+                                                        PAN Number <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="text" class="form-control" name="panNo" [(ngModel)]="employee.panNo" required />
+                                                    <div class="invalid-feedback">
+                                                        Please enter a PAN number.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <!-- Aadhar -->
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Aadhar Number</label>
+                                                    <input type="text" class="form-control" name="aadharNo" [(ngModel)]="employee.aadharNo" />
+                                                </div>
+                                            </div>
+                                
+                                        </div>
+                                
+                                        <!-- Buttons -->
+                                        <div class="row mt-4">
+                                            <div class="col-12 px-2">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="bi bi-check-circle me-2"></i>
+                                                    Save Basic Information
+                                                </button>
+                                
+                                                <button type="button" class="btn btn-secondary ms-2" (click)="cancel()">
+                                                    <i class="bi bi-x-circle me-2"></i>
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                        @if(user.msgStatus){
+                                        <div class="alert alert-success text-center position-fixed top-50 start-50 translate-middle shadow">
+                                            <strong>{{ user.msgStatus }}</strong>
+                                        </div>
+                                        
+                                        }@else{
+                                        <div class="text-danger">{{user.errorMessage}}</div>
+                                        }
+                                    </form>
+                                </div>
+
+
+                                <!-- Professional Information Tab -->
+                                <div class="tab-pane fade " id="professional" role="tabpanel"
+                                    aria-labelledby="professional-tab">
+                                    <form class="needs-validation" novalidate>
+                                        <div class="row gx-4 gy-3 border rounded p-3 mb-4">
+                                            <div class="col-md-4 px-2">
+                                                <div class="mb-4">
+                                                    <label for="empCode" class="form-label">Department<span
+                                                            class="text-danger">*</span></label>
+                                                    <select class="form-select" [(ngModel)]="selectdepartments"
+                                                        name="departments" (change)="onDepartmentChange($event)" required>
+                                                        <option value="" disabled>Select Department</option>
+                                                        <option *ngFor="let dp of departments" [value]="dp.id">
+                                                            {{ dp.value }}
+                                                        </option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a department.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-2">
+                                                <div class="mb-4">
+                                                    <label for="division" class="form-label">Division</label>
+                                                    <select class="form-select" [(ngModel)]="selectedDivision" name="division_list" (change)="onDivisionChange($event)" [disabled]="!divisionList.length">
+                                                        <option value="" disabled>Select Division</option>
+                                                        <option *ngFor="let dv of divisionList" [value]="dv.id">
+                                                            {{ dv.value }}
+                                                        </option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a division.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-md-4 px-2">
+                                                <div class="mb-4">
+                                                    <label for="level" class="form-label">Level
+                                                        <span class="text-danger">*</span></label>
+                                                    <select class="form-select" [(ngModel)]="selectLevel" name="level_list" (change)="onLevelChange($event)" [disabled]="!levelList.length">
+                                                        <option value="" disabled>Select Level</option>
+                                                        <option *ngFor="let rm of levelList" [value]="rm.id">
+                                                            {{ rm.value }}
+                                                        </option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a reporting manager.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-2">
+                                                <div class="mb-4">
+                                                    <label for="reportingManager" class="form-label">Reporting Manager
+                                                        <span class="text-danger">*</span></label>
+                                                    <select class="form-select" [(ngModel)]="selectedReportingManager" name="reportingManager_list" [disabled]="!reportingManagerList.length">
+                                                        <option value="" disabled>Select Reporting Manager</option>
+                                                        <option *ngFor="let rm of reportingManagerList" [value]="rm.id">
+                                                            {{ rm.value }}
+                                                        </option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a reporting manager.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-2">
+                                                <div class="mb-4">
+                                                    <label for="designation" class="form-label">Designation <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="designation"
+                                                        placeholder="Enter designation" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a designation.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-4 px-2">
+                                                <div class="mb-4">
+                                                    <label for="wemail" class="form-label">Email <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="email" class="form-control" id="wemail"
+                                                        placeholder="Enter office email" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide an office email.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-2">
+                                                <div class="mb-4">
+                                                    <label for="o_num" class="form-label">Contact Number <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control" id="o_num"
+                                                        placeholder="Enter office number" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide an office number.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-2">
+                                                <div class="mb-4">
+                                                    <label for="dateOfjoining" class="form-label">Date of Joining <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="date" class="form-control" id="dateOfjoining" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide date of joining.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-2">
+                                                <div class="mb-4">
+                                                    <label for="employmentType" class="form-label">Employment
+                                                        Type</label>
+                                                    <select class="form-select" id="employmentType">
+                                                        <option value="full_time" selected>Full Time</option>
+                                                        <option value="part_time">Part Time</option>
+                                                        <option value="contract">Contract</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col-12 px-2">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="bi bi-check-circle me-2"></i>Save Professional Information
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary ms-2">
+                                                    <i class="bi bi-arrow-clockwise me-2"></i>Reset
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Education Information Tab -->
+                                <div class="tab-pane fade" id="education" role="tabpanel"
+                                    aria-labelledby="education-tab">
+                                    <form class="needs-validation" novalidate>
+                                        <div class="row gx-4 gy-3 border rounded p-3 mb-4">
+                                            <!-- Post Graduate Information Section -->
+                                            <div class="dashboard-grid grid-cols-1">
+                                                <div>
+                                                    <h6 class="text-primary fw-semibold mb-3">
+                                                        <i class="bi bi-mortarboard-fill me-2"></i>Post Graduate
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="row gx-4 gy-3">
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="qualification" class="form-label">Qualification <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="qualification" placeholder="Enter qualification" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a valid qualification.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="specialization" class="form-label">Specialization <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="specialization" placeholder="Enter specialization" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a specialization.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="institutionName" class="form-label">Institution Name
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="institutionName" placeholder="Enter institution name" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide an institution name.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="boardOrUniversity" class="form-label">Board or
+                                                            University <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="boardOrUniversity" placeholder="Enter board or university"
+                                                            required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a board or university.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="percentageOrCgpa" class="form-label">Percentage or CGPA
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="percentageOrCgpa" placeholder="Enter percentage or CGPA"
+                                                            required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide percentage or CGPA.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="grade" class="form-label">Grade</label>
+                                                        <input type="text" class="form-control" id="grade" placeholder="Enter grade" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a grade.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="graduationYear" class="form-label">Graduation
+                                                            Year</label>
+                                                        <input type="number" class="form-control" id="graduationYear" min="1950" max="2024" placeholder="YYYY">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="modeOfStudy" class="form-label d-block  mt-1">Mode of
+                                                            Study</label>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="studentStatus" id="fullTime" value="full-time"
+                                                                checked="">
+                                                            <label class="form-check-label" for="fullTime">
+                                                                Regular
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="studentStatus" id="partTime" value="part-time">
+                                                            <label class="form-check-label" for="partTime">
+                                                                Correspondence
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Graduate Information Section -->
+                                            <div class="dashboard-grid grid-cols-1">
+                                                <div>
+                                                    <h6 class="text-primary fw-semibold mb-3">
+                                                        <i class="bi bi-mortarboard me-2"></i>Graduate
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="row gx-4 gy-3">
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="graduate_qualification" class="form-label">Qualification
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="graduate_qualification" placeholder="Enter qualification"
+                                                            required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a valid qualification.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="graduate_specialization" class="form-label">Specialization <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="graduate_specialization" placeholder="Enter specialization"
+                                                            required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a specialization.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="graduate_institution_name" class="form-label">Institution Name
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="graduate_institution_name" placeholder="Enter institution name"
+                                                            required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide an institution name.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="graduate_boardOrUniversity" class="form-label">Board or
+                                                            University <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="graduate_boardOrUniversity"
+                                                            placeholder="Enter board or university" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a board or university.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="graduate_percentageOrCgpa" class="form-label">Percentage
+                                                            or CGPA
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="graduate_percentageOrCgpa"
+                                                            placeholder="Enter percentage or CGPA" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide percentage or CGPA.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="graduate_grade" class="form-label">Grade</label>
+                                                        <input type="text" class="form-control" id="graduate_grade" placeholder="Enter grade" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a grade.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="graduate_year" class="form-label">Graduation
+                                                            Year</label>
+                                                        <input type="number" class="form-control" id="graduate_year" min="1950" max="2024" placeholder="YYYY">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="graduate_modeOfStudy" class="form-label d-block  mt-1">Mode of
+                                                            Study</label>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="studentStatus" id="fullTime" value="full-time"
+                                                                checked="">
+                                                            <label class="form-check-label" for="fullTime">
+                                                                Regular
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="studentStatus" id="partTime" value="part-time">
+                                                            <label class="form-check-label" for="partTime">
+                                                                Correspondence
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col-12 px-2">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="bi bi-check-circle me-2"></i>Save Education Information
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary ms-2">
+                                                    <i class="bi bi-arrow-clockwise me-2"></i>Reset
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Family Information Tab -->
+                                <div class="tab-pane fade" id="family" role="tabpanel" aria-labelledby="family-tab">
+
+                                    <form #familyForm="ngForm" novalidate>
+
+                                        <div *ngFor="let member of familyMembers; let i = index"
+                                            class="border rounded p-3 mb-4">
+
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h6 class="mb-0 text-primary fw-semibold">
+                                                    <i class="bi bi-people me-2"></i>Family Member {{ i + 1 }}
+                                                </h6>
+
+                                                <button *ngIf="familyMembers.length > 1" type="button"
+                                                    class="btn btn-sm btn-danger" (click)="removeFamilyMember(i)">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+
+                                            <div class="row gx-4 gy-3">
+                                                <!-- Name -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Member Name *</label>
+                                                    <input type="text" class="form-control" [(ngModel)]="member.name"
+                                                        name="name{{i}}" required>
+                                                </div>
+
+                                                <!-- Relationship -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Relationship *</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="member.relationship" name="relationship{{i}}"
+                                                        required>
+                                                </div>
+
+                                                <!-- Email -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Email *</label>
+                                                    <input type="email" class="form-control" [(ngModel)]="member.email"
+                                                        name="email{{i}}" required>
+                                                </div>
+
+                                                <!-- Mobile -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Mobile Number *</label>
+                                                    <input type="number" class="form-control"
+                                                        [(ngModel)]="member.mobile" name="mobile{{i}}" required>
+                                                </div>
+
+                                                <!-- DOB -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Date of Birth *</label>
+                                                    <input type="date" class="form-control" [(ngModel)]="member.dob"
+                                                        name="dob{{i}}" required>
+                                                </div>
+
+                                                <!-- Gender -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Gender *</label>
+                                                    <select class="form-select" [(ngModel)]="member.gender"
+                                                        name="gender{{i}}" required>
+                                                        <option value="" disabled>Select Gender</option>
+                                                        <option value="MALE">Male</option>
+                                                        <option value="FEMALE">Female</option>
+                                                        <option value="OTHER">Other</option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- Occupation -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Occupation *</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="member.occupation" name="occupation{{i}}" required>
+                                                </div>
+
+                                                <!-- Dependent -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label d-block">Dependent</label>
+
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            [name]="'dependent' + i" value="YES"
+                                                            [(ngModel)]="member.dependent">
+                                                        <label class="form-check-label">Yes</label>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            [name]="'dependent' + i" value="NO"
+                                                            [(ngModel)]="member.dependent">
+                                                        <label class="form-check-label">No</label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Add Member -->
+                                        <button type="button" class="btn btn-outline-primary mb-3"
+                                            (click)="addFamilyMember()">
+                                            <i class="bi bi-plus-circle me-2"></i>Add Family Member
+                                        </button>
+
+                                    </form>
+                                </div>
+
+                                <!-- Address Information Tab -->
+                                <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+                                    <form class="needs-validation" novalidate>
+                                        <div class="row gx-4 gy-3 border rounded p-3 mb-4">
+                                            <!-- Current Address Section -->
+                                            <div class="dashboard-grid grid-cols-1">
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h6 class="mb-0 text-primary fw-semibold">
+                                                        <i class="bi bi-house-check me-2"></i>Current
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="row gx-4 gy-3">
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="address_line_one" class="form-label">Address Line 1
+                                                            <span class="text-danger">*</span></label>
+                                                        <!-- <input type="text" class="form-control" id="address_line_one" placeholder="Enter address line 1" required> -->
+                                                        <input type="text" class="form-control" [(ngModel)]="currentAddress.line1" name="c_line1">
+                                                        <div class="invalid-feedback">
+                                                            Please provide a valid address.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="address_line_two" class="form-label">Address Line 2
+                                                            <span class="text-danger">*</span></label>
+                                                        <!-- <input type="text" class="form-control" id="address_line_two" placeholder="Enter address line 2"> -->
+                                                        <input type="text" class="form-control" [(ngModel)]="currentAddress.line2" name="c_line2">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="city" class="form-label">Country <span class="text-danger">*</span></label>
+                                                        <select class="form-select" [(ngModel)]="currentAddress.country" name="current_country" (change)="onCurrentCountryChange('current')">
+                                                            <option [ngValue]="null" disabled selected>Select Country</option>
+                                                            <option *ngFor="let country of countries" [ngValue]="country">
+                                                                {{ country }}
+                                                            </option>
+                                                        </select>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a country.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="state" class="form-label">State <span class="text-danger">*</span></label>
+                                                        <select class="form-select" [(ngModel)]="currentAddress.state" name="current_state" (change)="onCurrentStateChange('current')"
+                                                            [disabled]="!currentStates.length">
+                                                            <option [ngValue]="null" disabled selected>Select State</option>
+                                                            <option *ngFor="let state of currentStates" [ngValue]="state">
+                                                                {{ state }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="state" class="form-label">City <span class="text-danger">*</span></label>
+                                                        <select class="form-select" [(ngModel)]="currentAddress.city" name="city" [disabled]="!currentCities.length"
+                                                            (change)="onCurrentCityChange()">
+                                                        
+                                                            <option [ngValue]="null" disabled selected>Select City</option>
+                                                            <option *ngFor="let city of currentCities" [ngValue]="city">
+                                                                {{ city.name }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="pincode" class="form-label">Pin Code <span class="text-danger">*</span></label>
+                                                        <!-- <input type="text" class="form-control" id="pincode" disabled name="pincode" [(ngModel)]="user.pincode"
+                                                            required> -->
+                                                        <input class="form-control" name="c_pincode" [(ngModel)]="currentAddress.pincode" disabled />
+                                                        <div class="invalid-feedback">
+                                                            Please provide a pin code.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Permanent Address Section -->
+                                            <div class="dashboard-grid grid-cols-1">
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h6 class="mb-0 text-primary fw-semibold">
+                                                        <i class="bi bi-building me-2"></i>Permanent
+                                                    </h6>
+                                                    <div class="form-check">
+                                                        <!-- <input class="form-check-input" type="checkbox" value="" name="" id="same_address" (change)="copyCurrentAddress($event)"> -->
+                                                        <input class="form-check-input" type="checkbox" id="same_address" [(ngModel)]="sameAsCurrent" name="sameAsCurrent"
+                                                            (change)="copyCurrentAddress($event)">
+
+                                                        <label class="form-check-label" for="same_address">
+                                                            Same as Current Address
+                                                        </label>
+                                                    </div>
+                                                     <!-- <input class="form-check-input" type="checkbox" id="same_address" (change)="copyCurrentAddress($event)"> Same as Current Address -->
+                                                </div>
+                                               
+
+                                            </div>
+                                            <div class="row gx-4 gy-3">
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="permanent_line_one" class="form-label">Address Line 1
+                                                            <span class="text-danger">*</span></label>
+                                                        <!-- <input type="text" class="form-control" id="permanent_line_one" placeholder="Enter address line 1" required> -->
+                                                        <input type="text" class="form-control" [(ngModel)]="permanentAddress.line1" name="p_line1" [readonly]="sameAsCurrent">
+                                                        <div class="invalid-feedback">
+                                                            Please provide a valid address.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="permanent_line_two" class="form-label">Address Line 2
+                                                            <span class="text-danger">*</span></label>
+                                                        <!-- <input type="text" class="form-control" id="permanent_line_two" placeholder="Enter address line 2"> -->
+                                                        <input type="text" class="form-control" [(ngModel)]="permanentAddress.line2" name="p_line2" [readonly]="sameAsCurrent">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="city" class="form-label">Country <span class="text-danger">*</span></label>
+                                                        <select class="form-select" [(ngModel)]="permanentAddress.country" name="permanent_country" (change)="onPermanentCountryChange()">
+                                                            <option [ngValue]="null" disabled selected>Select Country</option>
+                                                            <option *ngFor="let country of countries" [ngValue]="country">
+                                                                {{ country }}
+                                                            </option>
+                                                        </select>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a country.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="state" class="form-label">State <span class="text-danger">*</span></label>
+                                                        <select class="form-select" [(ngModel)]="permanentAddress.state" name="permanent_state" (change)="onPermanentStateChange()"
+                                                            [disabled]="!permanentStates.length">
+                                                            <option [ngValue]="null" disabled selected>Select State</option>
+                                                            <option *ngFor="let state of permanentStates" [ngValue]="state">
+                                                                {{ state }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="state" class="form-label">City <span class="text-danger">*</span></label>
+                                                        <select class="form-select" [(ngModel)]="permanentAddress.city" name="permanent_city" [disabled]="!permanentCities.length"
+                                                            (change)="onPermanentCityChange()">
+                                                        
+                                                            <option [ngValue]="null" disabled selected>Select City</option>
+                                                            <option *ngFor="let city of permanentCities" [ngValue]="city">
+                                                                {{ city.name }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="pincode" class="form-label">Pin Code <span class="text-danger">*</span></label>
+                                                        <!-- <input type="text" class="form-control" id="pincode" disabled name="pincode" [(ngModel)]="user.pincode"
+                                                            required> -->
+                                                        <input type="text" class="form-control" name="p_pincode" [(ngModel)]="permanentAddress.pincode" disabled>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a pin code.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-4">
+                                            <div class="col-12 px-2">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="bi bi-check-circle me-2"></i>Save Address Information
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary ms-2">
+                                                    <i class="bi bi-arrow-clockwise me-2"></i>Reset
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Experience Information Tab -->
+                                <div class="tab-pane fade" id="experience" role="tabpanel"
+                                    aria-labelledby="experience-tab">
+
+                                    <form #experienceForm="ngForm" novalidate>
+
+                                        <div *ngFor="let exp of experiences; let i = index"
+                                            class="row border rounded p-3 mb-4">
+
+                                            <!-- Header -->
+
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h6 class="mb-0 text-primary fw-semibold">
+                                                    <i class="bi bi-briefcase me-2"></i>Experience {{ i + 1 }}
+                                                </h6>
+
+                                                <button *ngIf="experiences.length > 1" type="button"
+                                                    class="btn btn-sm btn-danger" (click)="removeExperience(i)">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                            <div class="row gx-4 gy-3">
+                                                <!-- Organization -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Organization Name *</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="exp.organizationName" name="orgName{{i}}" required>
+                                                </div>
+
+                                                <!-- Employment Code -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Employee Code *</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="exp.employeeCode" name="employeeCode{{i}}"
+                                                        required>
+                                                </div>
+
+                                                <!-- Organization Email -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Organization Email *</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="exp.organizationEmail"
+                                                        name="organizationEmail{{i}}" required>
+                                                </div>
+
+                                                <!-- Organization Contact -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Organization Contact *</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="exp.organizationContact"
+                                                        name="organizationContact{{i}}" required>
+                                                </div>
+
+                                                <!-- Reference Email -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Reference Email *</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="exp.referenceEmail" name="referenceEmail{{i}}"
+                                                        required>
+                                                </div>
+
+                                                <!-- Reference Contact -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Reference Contact *</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="exp.referenceContact" name="referenceContact{{i}}"
+                                                        required>
+                                                </div>
+
+                                                <!-- Designation -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Designation *</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="exp.designation" name="designation{{i}}" required>
+                                                </div>
+
+                                                <!-- Responsibilities -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Responsibilities</label>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="exp.responsibilities" name="responsibilities{{i}}">
+                                                </div>
+
+                                                <!-- Start Date -->
+                                                <div class="col-md-6">
+                                                    <label for="s_date" class="form-label">Start Date</label>
+                                                    <input type="date" class="form-control" [(ngModel)]="exp.startDate"
+                                                        name="startDate{{i}}">
+                                                </div>
+
+                                                <!-- End Date -->
+                                                <div class="col-md-6">
+                                                    <label for="endDate" class="form-label">End Date</label>
+                                                    <input type="date" class="form-control" [(ngModel)]="exp.endDate"
+                                                        name="endDate{{i}}">
+                                                </div>
+
+                                                <!-- Location -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Location *</label>
+                                                    <input type="text" class="form-control" [(ngModel)]="exp.location"
+                                                        name="location{{i}}" required>
+                                                </div>
+
+                                                <!-- Employment Type -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label d-block">Employment Type</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            [name]="'empType' + i" value="PERMANENT"
+                                                            [(ngModel)]="exp.employmentType">
+                                                        <label class="form-check-label">Permanent</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            [name]="'empType' + i" value="CONTRACT"
+                                                            [(ngModel)]="exp.employmentType">
+                                                        <label class="form-check-label">Contract</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Add Experience -->
+                                        <button type="button" class="btn btn-outline-primary mb-3"
+                                            (click)="addExperience()">
+                                            <i class="bi bi-plus-circle me-2"></i>Add Experience
+                                        </button>
+
+                                    </form>
+                                </div>
+
+                                <!-- Emergency Information Tab -->
+                                <div class="tab-pane fade" id="emergency" role="tabpanel"
+                                    aria-labelledby="emergency-tab">
+                                    <form class="needs-validation" novalidate>
+                                        <div class="row gx-4 gy-3 border rounded p-3 mb-4">
+                                            <!-- Personal Information Section -->
+                                            <div class="dashboard-grid grid-cols-1">
+                                                <div>
+                                                    <h6 class="text-primary fw-semibold mb-3">
+                                                        <i class="bi bi-person-circle me-2"></i>Personal
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="row gx-4 gy-3">
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="emergency_name" class="form-label">Name <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="emergency_name" placeholder="Enter name" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a valid emergency contact name.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="emergency_relationship" class="form-label">Relationship</label>
+                                                        <input type="text" class="form-control" id="emergency_relationship" placeholder="Enter relationship"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="emergency_email" class="form-label">Email <span class="text-danger">*</span></label>
+                                                        <input type="email" class="form-control" id="emergency_email" placeholder="Enter email" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide an email.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="emergency_mobile" class="form-label">Mobile Number <span class="text-danger">*</span></label>
+                                                        <input type="number" class="form-control" id="emergency_mobile" placeholder="Enter mobile number" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide an emergency mobile number.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="emergency_alt_mobile" class="form-label">Alternate
+                                                            Mobile Number <span class="text-danger">*</span></label>
+                                                        <input type="number" class="form-control" id="emergency_alt_mobile"
+                                                            placeholder="Enter alternate mobile number" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide an emergency mobile number.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="address_type" class="form-label form-label d-block  mt-1">Address
+                                                            Type</label>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="address_type" id="dependent_true" value="full-time"
+                                                                checked="">
+                                                            <label class="form-check-label" for="dependent_true">
+                                                                Own
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="address_type" id="rented_false" value="part-time">
+                                                            <label class="form-check-label" for="rented_false">
+                                                                Rented
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="address_line_one" class="form-label">Address Line 1
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="address_line_one" placeholder="Enter address line 1" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a valid address.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="address_line_two" class="form-label">Address Line 2
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="address_line_two" placeholder="Enter address line 2">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="city" class="form-label">Country <span class="text-danger">*</span></label>
+                                                        <select class="form-select" [(ngModel)]="currentAddress.country" name="emergency_country" (change)="onCurrentCountryChange('current')">
+                                                            <option [ngValue]="null" selected disabled>Select Country
+                                                            </option>
+                                                            <option *ngFor="let country of countries" [ngValue]="country">
+                                                                {{ country }}
+                                                            </option>
+                                                        </select>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a country.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="state" class="form-label">State <span class="text-danger">*</span></label>
+                                                        <select class="form-select" [(ngModel)]="this.currentAddress.state" name="emergency_state" (change)="onCurrentStateChange('current')"
+                                                            [disabled]="!currentStates.length">
+                                                            <option [ngValue]="null" selected disabled>Select State
+                                                            </option>
+                                                            <option *ngFor="let state of currentStates" [ngValue]="state">
+                                                                {{ state }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="state" class="form-label">City <span class="text-danger">*</span></label>
+                                                        <select class="form-select" [(ngModel)]="this.currentAddress.city" name="current_city" [disabled]="!currentCities.length"
+                                                            (change)="onCurrentCityChange()">
+                                                        
+                                                            <option [ngValue]="null" disabled selected>Select City</option>
+                                                            <option *ngFor="let city of currentCities" [ngValue]="city">
+                                                                {{ city.name }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="pincode" class="form-label">Pin Code <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="pincode" disabled name="pincode" [(ngModel)]="this.currentAddress.pincode"
+                                                            required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a pin code.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Office Information Section -->
+                                            <div class="dashboard-grid grid-cols-1 ">
+                                                <div>
+                                                    <h6 class="text-primary fw-semibold mb-3">
+                                                        <i class="bi bi-building me-2"></i>Official
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="row gx-4 gy-3">
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="emergency_org_name" class="form-label">Name <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="emergency_org_name" placeholder="Enter name" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide a valid emergency contact name.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="emergency_org_relationship" class="form-label">Relationship</label>
+                                                        <input type="text" class="form-control" id="emergency_org_relationship" placeholder="Enter relationship"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="emergency_org_email" class="form-label">Email <span class="text-danger">*</span></label>
+                                                        <input type="email" class="form-control" id="emergency_org_email" placeholder="Enter email" required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide an email.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-2">
+                                                    <div class="mb-4">
+                                                        <label for="emergency_org_mobile" class="form-label">Mobile Number
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="number" class="form-control" id="emergency_org_mobile" placeholder="Enter mobile number"
+                                                            required>
+                                                        <div class="invalid-feedback">
+                                                            Please provide an emergency mobile number.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col-12 px-2">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="bi bi-check-circle me-2"></i>Save Emergency Information
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary ms-2">
+                                                    <i class="bi bi-arrow-clockwise me-2"></i>Reset
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Medical Claim Information Tab -->
+                                <div class="tab-pane fade" id="mediclaim" role="tabpanel"
+                                    aria-labelledby="mediclaim-tab">
+                                    <form class="needs-validation" novalidate>
+                                        <div class="row gx-4 gy-3 border rounded p-3 mb-4">
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label for="policyid" class="form-label">Policy Id <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="policyid"
+                                                        placeholder="Enter policy id" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a valid policy id.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label for="policy_number" class="form-label">Policy Number <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="policy_number"
+                                                        placeholder="Enter policy number" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a policy number.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label for="provider" class="form-label">Provider </label>
+                                                    <input type="text" class="form-control" id="provider"
+                                                        placeholder="Enter insurance provider" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label for="cover_amt" class="form-label">Coverage Amount </label>
+                                                    <input type="numer" class="form-control" id="cover_amt"
+                                                        placeholder="Enter coverage amount">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label for="s_date" class="form-label">Start Date</label>
+                                                    <input type="date" class="form-control" id="s_date">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 px-2">
+                                                <div class="mb-4">
+                                                    <label for="endDate" class="form-label">End Date</label>
+                                                    <input type="date" class="form-control" id="e_date">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col-12 px-2">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="bi bi-check-circle me-2"></i>Save Medical Information
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary ms-2">
+                                                    <i class="bi bi-arrow-clockwise me-2"></i>Reset
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
